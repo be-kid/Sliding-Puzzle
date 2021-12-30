@@ -1,33 +1,45 @@
+const dx = [0, -1, 0, 1];
+const dy = [1, 0, -1, 0];
+
 const board = [];
-for (let i = 0; i < 5; i++){
-    const row = [1,1,1,1,1];
+for (let i = 0; i < 4; i++){
+    const row = [1,1,1,1];
     board.push(row);
 }
 board[0][0] = 0;
-document.getElementById("puzzle1").style.visibility = "hidden";
+const hiddenPuzzle = document.getElementById('puzzle00')
+hiddenPuzzle.classList.add('hidden');
 
 const boardSetting = () => {
-    let x = 0;
-    let y = 0;
-    
-    for (let i = 0; i < 25; i++){
-        const puzzle = document.getElementById(`puzzle${i+1}`);
-        puzzle.addEventListener("click",clickPuzzle);
-        puzzle.style.left = `${x}%`;
-        puzzle.style.top = `${y}%`;
-
-        x += 20;
-
-        if (x===100){
-            x = 0;
-            y += 20;
+    for (let i = 0; i < 4; i++){
+        for (let j = 0; j < 4; j++){
+            const piece = document.getElementById(`puzzle${i}${j}`);
+            piece.classList.add(`pos${i}${j}`);
+            piece.addEventListener('click', clickPuzzle);
         }
     }
 };
 
 const clickPuzzle = (event) => {
-    console.log(event.target.id);
+    const target = event.target;
+    const cx = parseInt(target.classList[1][3]);
+    const cy = parseInt(target.classList[1][4]);
+    
+    for (let i=0; i<4; i++){
+        const nx = cx + dx[i];
+        const ny = cy + dy[i];
+        if ((nx>=0 && nx<4) && (ny>=0 && ny<4) && board[nx][ny] === 0){
+            board[nx][ny] = 1;
+            board[cx][cy] = 0;
+            target.classList.remove(`pos${cx}${cy}`);
+            target.classList.add(`pos${nx}${ny}`);
 
+            hiddenPuzzle.classList.remove(`pos${nx}${ny}`);
+            hiddenPuzzle.classList.add(`pos${cx}${cy}`);
+            return;
+        }
+    }
+    
 }
 
 boardSetting();

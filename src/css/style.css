@@ -1,0 +1,114 @@
+.board {
+  background-color: beige;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  height: 40vh;
+  width: 40vh;
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.puzzle {
+  width: 10vh;
+  height: 10vh;
+  box-sizing: border-box;
+  border: 1px solid black;
+
+  position: absolute;
+  text-align: center;
+}
+
+.puzzle:hover {
+  background-color: aquamarine;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.pos00 {
+  transition-duration: 1s;
+  left: 0%;
+  top: 0%;
+}
+.pos01 {
+  transition-duration: 1s;
+  left: 25%;
+  top: 0%;
+}
+.pos02 {
+  transition-duration: 1s;
+  left: 50%;
+  top: 0%;
+}
+.pos03 {
+  transition-duration: 1s;
+  left: 75%;
+  top: 0%;
+}
+
+.pos10 {
+  transition-duration: 1s;
+  left: 0%;
+  top: 25%;
+}
+.pos11 {
+  transition-duration: 1s;
+  left: 25%;
+  top: 25%;
+}
+.pos12 {
+  transition-duration: 1s;
+  left: 50%;
+  top: 25%;
+}
+.pos13 {
+  transition-duration: 1s;
+  left: 75%;
+  top: 25%;
+}
+
+.pos20 {
+  transition-duration: 1s;
+  left: 0%;
+  top: 50%;
+}
+.pos21 {
+  transition-duration: 1s;
+  left: 25%;
+  top: 50%;
+}
+.pos22 {
+  transition-duration: 1s;
+  left: 50%;
+  top: 50%;
+}
+.pos23 {
+  transition-duration: 1s;
+  left: 75%;
+  top: 50%;
+}
+
+.pos30 {
+  transition-duration: 1s;
+  left: 0%;
+  top: 75%;
+}
+.pos31 {
+  transition-duration: 1s;
+  left: 25%;
+  top: 75%;
+}
+.pos32 {
+  transition-duration: 1s;
+  left: 50%;
+  top: 75%;
+}
+.pos33 {
+  transition-duration: 1s;
+  left: 75%;
+  top: 75%;
+}
