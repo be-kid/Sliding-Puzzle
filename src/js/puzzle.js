@@ -10,20 +10,19 @@ board[0][0] = 0;
 const hiddenPuzzle = document.getElementById('puzzle00')
 hiddenPuzzle.classList.add('hidden');
 
+const startBtn = document.querySelector('.startBtn');
+
 const boardSetting = () => {
     for (let i = 0; i < 4; i++){
         for (let j = 0; j < 4; j++){
             const piece = document.getElementById(`puzzle${i}${j}`);
             piece.classList.add(`pos${i}${j}`);
-            piece.addEventListener('click', clickPuzzle);
 
             piece.style.backgroundImage = 'url("src/img/awesome.jpg")';
             piece.style.backgroundSize = '40vh 40vh';
             piece.style.backgroundPosition = `${(4-j)*10}vh ${(4-i)*10}vh`;
         }
     }
-
-    shuffle();
 };
 
 const clickPuzzle = (event) => {
@@ -42,7 +41,13 @@ const clickPuzzle = (event) => {
 
             hiddenPuzzle.classList.remove(`pos${nx}${ny}`);
             hiddenPuzzle.classList.add(`pos${cx}${cy}`);
-            return;
+            if (checkBoard()) {
+                // clear
+                stopGame();
+            }
+            else{
+                return;
+            }
         }
     }
     
@@ -85,4 +90,40 @@ const shuffle = () => {
     }, 1);
 }
 
+const checkBoard = () => {
+    let x = 0;
+    let y = 0;
+    let result = true;
+    document.querySelectorAll('.puzzle').forEach(p => {
+        if (p.classList.contains(`pos${x}${y}`)){
+            y += 1;
+            if (y === 4){
+                y = 0;
+                x += 1;
+            }
+        }
+        else {
+            result = false;
+        }
+    })
+    return result;
+}
+
+const startGame = () => {
+    startBtn.style.display = 'none';
+    document.querySelectorAll('.puzzle').forEach(p => {
+        p.addEventListener('click', clickPuzzle);
+    })
+    shuffle();
+}
+
+const stopGame = () => {
+    startBtn.style.display = 'block';
+    console.log('stop game');
+    document.querySelectorAll('.puzzle').forEach(p => {
+        p.removeEventListener('click', clickPuzzle);
+    })
+}
+
 boardSetting();
+startBtn.addEventListener('click', startGame);
