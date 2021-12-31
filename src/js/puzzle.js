@@ -8,14 +8,14 @@ for (let i = 0; i < 4; i++){
 }
 board[0][0] = 0;
 const hiddenPuzzle = document.getElementById('puzzle00')
-hiddenPuzzle.classList.add('hidden');
 
 const startBtn = document.querySelector('.startBtn');
 const title = document.querySelector('.timer');
 let timer;
 
+const imageUrl = 'url("src/img/happynewyear.jpeg")';
 const originalImage = document.querySelector('.originalImage');
-originalImage.style.backgroundImage = 'url("src/img/awesome.jpg")';
+originalImage.style.backgroundImage = imageUrl;
 
 const boardSetting = () => {
     for (let i = 0; i < 4; i++){
@@ -23,7 +23,7 @@ const boardSetting = () => {
             const piece = document.getElementById(`puzzle${i}${j}`);
             piece.classList.add(`pos${i}${j}`);
 
-            piece.style.backgroundImage = 'url("src/img/awesome.jpg")';
+            piece.style.backgroundImage = imageUrl;
             piece.style.backgroundSize = '40vh 40vh';
             piece.style.backgroundPosition = `${(4-j)*10}vh ${(4-i)*10}vh`;
         }
@@ -62,6 +62,8 @@ const shuffle = () => {
     // 빈칸인 퍼즐의 상하좌우 중에서 랜덤으로 선택 (범위 안에서)
     // 서로 위치 교환
     // 이걸 랜덤한 횟수 반복
+    hiddenPuzzle.classList.add('hidden');
+
     let hiddenPuzzleX = 0;
     let hiddenPuzzleY = 0;
     const shuffleCount = Math.floor(Math.random() * 1000) + 1000;
@@ -131,6 +133,7 @@ const stopGame = () => {
     document.querySelectorAll('.puzzle').forEach(p => {
         p.removeEventListener('click', clickPuzzle);
     })
+    hiddenPuzzle.classList.remove('hidden');
 }
 
 const startTimer = () => {
