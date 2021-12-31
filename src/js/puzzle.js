@@ -22,6 +22,8 @@ const boardSetting = () => {
             piece.style.backgroundPosition = `${(4-j)*10}vh ${(4-i)*10}vh`;
         }
     }
+
+    shuffle();
 };
 
 const clickPuzzle = (event) => {
@@ -44,6 +46,43 @@ const clickPuzzle = (event) => {
         }
     }
     
+}
+
+const shuffle = () => {
+    // 빈칸인 퍼즐의 상하좌우 중에서 랜덤으로 선택 (범위 안에서)
+    // 서로 위치 교환
+    // 이걸 랜덤한 횟수 반복
+    let hiddenPuzzleX = 0;
+    let hiddenPuzzleY = 0;
+    const shuffleCount = Math.floor(Math.random() * 1000) + 1000;
+    let count = 0;
+    const puzzleShuffle = setInterval(()=>{
+        while (true) {
+            const selectDirection = Math.floor(Math.random() *  4);
+            const nx = hiddenPuzzleX + dx[selectDirection];
+            const ny = hiddenPuzzleY + dy[selectDirection];
+
+            if ((nx>=0 && nx<4) && (ny>=0 && ny<4)){
+                const target = document.querySelector(`.pos${nx}${ny}`);
+
+                board[nx][ny] = 0;
+                board[hiddenPuzzleX][hiddenPuzzleY] = 1;
+                target.classList.remove(`pos${nx}${ny}`);
+                target.classList.add(`pos${hiddenPuzzleX}${hiddenPuzzleY}`);
+
+                hiddenPuzzle.classList.remove(`pos${hiddenPuzzleX}${hiddenPuzzleY}`);
+                hiddenPuzzle.classList.add(`pos${nx}${ny}`);
+
+                hiddenPuzzleX = nx;
+                hiddenPuzzleY = ny;
+                break;
+            }
+        }
+        count += 1;
+        if (count === shuffleCount){
+            clearInterval(puzzleShuffle);
+        }
+    }, 1);
 }
 
 boardSetting();
