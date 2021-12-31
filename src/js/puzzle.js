@@ -11,6 +11,8 @@ const hiddenPuzzle = document.getElementById('puzzle00')
 hiddenPuzzle.classList.add('hidden');
 
 const startBtn = document.querySelector('.startBtn');
+const title = document.querySelector('.timer');
+let timer;
 
 const boardSetting = () => {
     for (let i = 0; i < 4; i++){
@@ -86,6 +88,7 @@ const shuffle = () => {
         count += 1;
         if (count === shuffleCount){
             clearInterval(puzzleShuffle);
+            startTimer();
         }
     }, 1);
 }
@@ -111,6 +114,7 @@ const checkBoard = () => {
 
 const startGame = () => {
     startBtn.style.display = 'none';
+    title.textContent = '맞춰보시오';
     document.querySelectorAll('.puzzle').forEach(p => {
         p.addEventListener('click', clickPuzzle);
     })
@@ -118,11 +122,20 @@ const startGame = () => {
 }
 
 const stopGame = () => {
+    clearInterval(timer);
     startBtn.style.display = 'block';
     console.log('stop game');
     document.querySelectorAll('.puzzle').forEach(p => {
         p.removeEventListener('click', clickPuzzle);
     })
+}
+
+const startTimer = () => {
+    let count = 0;
+    timer = setInterval(() => {
+        title.textContent = count.toFixed(2);
+        count += 0.01;
+    }, 10);
 }
 
 boardSetting();
