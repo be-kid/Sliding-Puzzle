@@ -16,6 +16,10 @@ const boardSetting = () => {
             const piece = document.getElementById(`puzzle${i}${j}`);
             piece.classList.add(`pos${i}${j}`);
             piece.addEventListener('click', clickPuzzle);
+
+            piece.style.backgroundImage = 'url("src/img/awesome.jpg")';
+            piece.style.backgroundSize = '40vh 40vh';
+            piece.style.backgroundPosition = `${(4-j)*10}vh ${(4-i)*10}vh`;
         }
     }
 };

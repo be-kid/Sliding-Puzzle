@@ -14,9 +14,6 @@
 .puzzle {
   width: 10vh;
   height: 10vh;
-  box-sizing: border-box;
-  border: 1px solid black;
-
   position: absolute;
   text-align: center;
 }
