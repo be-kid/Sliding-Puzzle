@@ -14,6 +14,9 @@ const startBtn = document.querySelector('.startBtn');
 const title = document.querySelector('.timer');
 let timer;
 
+const originalImage = document.querySelector('.originalImage');
+originalImage.style.backgroundImage = 'url("src/img/awesome.jpg")';
+
 const boardSetting = () => {
     for (let i = 0; i < 4; i++){
         for (let j = 0; j < 4; j++){

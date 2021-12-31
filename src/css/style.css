@@ -26,7 +26,6 @@ main {
 .originalImage {
   width: 20vh;
   height: 20vh;
-  background-image: url("/src/img/awesome.jpg");
   background-size: 20vh 20vh;
   margin-top: 5vh;
   margin-bottom: 5vh;
