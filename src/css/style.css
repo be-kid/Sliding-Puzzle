@@ -2,6 +2,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
+  background-color: black;
 }
 
 main {
@@ -34,8 +36,8 @@ main {
 .startBtn {
   margin-top: 5vh;
   border: 2px solid rgb(137, 143, 22);
-  border-radius: 10px;
-  background-color: beige;
+  border-radius: 5px;
+  background-color: navy;
 }
 
 .puzzle {

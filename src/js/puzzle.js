@@ -13,7 +13,7 @@ const startBtn = document.querySelector('.startBtn');
 const title = document.querySelector('.timer');
 let timer;
 
-const imageUrl = 'url("src/img/happynewyear.jpeg")';
+const imageUrl = 'url("src/img/spiderman.png")';
 const originalImage = document.querySelector('.originalImage');
 originalImage.style.backgroundImage = imageUrl;
 
